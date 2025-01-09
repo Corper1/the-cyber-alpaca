@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cyber Alpaca</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      text-align: center;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image:url('images/backgroundalpaca.png');
+ /* Замените на URL вашего изображения */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 0 20px;
+    }
+    /* Добавление затемнения для лучшей читабельности текста */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Прозрачный чёрный слой */
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      color: #00ffef;
+    }
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-bottom: 1em;
+      color: #cccccc;
+    }
+    #countdown-description {
+      font-size: 1.5em;
+      color: #00ffef;
+      margin: 10px 0;
+    }
+    #countdown {
+      font-size: 2em;
+      color: #00ffef;
+      text-align: center;
+      margin: 20px 0;
+    }
+    section {
+      padding: 50px;
+    }
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #0d0d0d;
+    }
+    .links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      color: #fff;
+    }
+    .links a.twitter {
+      background-color: #1da1f2;
+    }
+    .links a.website {
+      background-color: #28a745;
+    }
+    .links a:hover {
+      opacity: 0.8;
+    }
+/* Добавьте этот код внутрь <style> */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Главная страница (фиктивный таймер) -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Cyber Alpaca</h1>
+    <p>
+      An alpaca from the digital age with laser eyes and cybernetic implants. It lives in a dark neon world of crypto-technologies. Read the story below.
+    </p>
+    <p id="countdown-description">
+      Until token launch
+    </p>
+    <!-- Фиктивный таймер -->
+    <div id="static-countdown">
+      <span>00</span> days
+      <span>00</span> hours
+      <span>00</span> minutes
+      <span>00</span> seconds
+    </div>
+    <p style="color: white; margin-top: 20px;">
+      CA: тут будет адрес монеты
+    </p>
+  </div>
+</div>
+
+  <!-- Пример дополнительных секций для прокрутки -->
+  <section style="
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('images/cave.png') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+">
+  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">The Story. Chapter 1</h2>
+  <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
+    Once upon a time in the mountains of a peaceful region, a regular alpaca named Alpaca was born. As a young cria, Alpaca was carefree and vulnerable, spending her days grazing on hilltops and playing with other alpacas. Her soft fleece and good-natured temperament quickly made her the favorite of the entire herd. However, the world around Alpaca was rapidly changing: technology began to penetrate even the most remote corners, and fate led her down a path that would change her life forever.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
+    One day, while exploring an ancient cave near the mountains, Alpaca came across a mysterious device left by long-gone explorers. It was something like an old computer or artifact embedded in the rock, with a flickering screen and complex symbols. Curiosity overcame caution, and Alpaca touched the device. In that moment, something incredible happened: a stream of data and energy flowed through her body, transforming her—her eyes began to shine with laser light, and her fleece started to shimmer with neon hues. Now, Alpaca possessed cybernetic implants that opened the doors to the digital world.
+  </p>
+</section>
+
+
+ <section style="
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('images/oldtown.png') no-repeat center center;
+  background-size: 100%; /* Уменьшение масштаба изображения */
+  background-position: center center; /* Центрирование изображения */
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+">
+  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Chapter Two</h2>
+  <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
+  </p>
+</section>
+
+
+ <section style="
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('images/underattack.png') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+">
+  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Chapter Three</h2>
+  <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
+    A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
+  </p>
+</section>
+<section style="
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('images/coming-soon.jpg') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+">
+  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 2.5em;">Chapter 4</h2>
+  <p style="font-size: 1.5em; margin: 20px auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+    Coming Soon
+  </p>
+  <p id="countdown-description" style="font-size: 1.2em; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+    Chapter 4 will unlock in:
+  </p>
+  <!-- Рабочий таймер -->
+  <div id="countdown" style="font-size: 2em; color: #00ffef; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+    <span id="days">00</span> days
+    <span id="hours">00</span> hours
+    <span id="minutes">00</span> minutes
+    <span id="seconds">00</span> seconds
+  </div>
+  <p style="font-size: 1.2em; margin-top: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+    Or unlock faster when the token price hits <span style="color: #00ffef; font-weight: bold;">$X</span>!
+  </p>
+</section>
+
+<!-- Скрипт для таймера -->
+<script>
+  // Настраиваем дату начала отсчёта и целевую дату
+  const startDate = new Date("2025-01-10T22:00:00-05:00").getTime(); // 10 января 2025, 22:00 EST
+  const targetDate = startDate + (24 * 60 * 60 * 1000); // Добавляем 24 часа
+
+  const countdown = document.getElementById("countdown");
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+
+    // Если текущее время меньше времени запуска, отображаем сообщение ожидания
+    if (now < startDate) {
+      countdown.innerHTML = "Awaiting countdown start...";
+      return;
+    }
+
+    // Если отсчёт завершён
+    const distance = targetDate - now;
+    if (distance <= 0) {
+      countdown.innerHTML = "The wait is over!";
+      return;
+    }
+
+    // Расчёт оставшегося времени
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Обновление таймера
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+  };
+
+  // Обновление таймера каждую секунду
+  setInterval(updateCountdown, 1000);
+</script>
+
+
+  <!-- Футер с ссылками -->
+  <footer>
+    <div class="links">
+      <a href="https://x.com/CyberAlpaca2025" class="twitter" target="_blank">Twitter</a>
+      <a href="https://yourwebsite.com" class="website" target="_blank">pump.fun</a>
+    </div>
+  </footer>
+</body>
+</html>
+
