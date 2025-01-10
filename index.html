@@ -337,11 +337,26 @@
 
   // Скролл на четвёртую главу
   const scrollButton = document.getElementById("scroll-button");
+  const chapter4 = document.querySelector('section:last-of-type'); // Глава 4
+
   scrollButton.addEventListener("click", () => {
-    const chapter4 = document.querySelector('section:last-of-type'); // Глава 4
     chapter4.scrollIntoView({ behavior: 'smooth' }); // Плавный скролл
   });
+
+  // Скрытие стрелки при достижении 4-й главы
+  window.addEventListener("scroll", () => {
+    const scrollButton = document.getElementById("scroll-button");
+    const chapter4Position = chapter4.getBoundingClientRect().top; // Позиция главы 4 относительно окна
+    const viewportHeight = window.innerHeight;
+
+    if (chapter4Position <= viewportHeight / 2) {
+      scrollButton.style.display = "none"; // Скрываем стрелку
+    } else {
+      scrollButton.style.display = "flex"; // Показываем стрелку
+    }
+  });
 </script>
+
 
 </body>
 </html>
