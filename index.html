@@ -322,7 +322,7 @@
 
   // Скролл вниз к четвёртой главе
   scrollButton.addEventListener("click", () => {
-    chapter4.scrollIntoView({ behavior: "smooth" }); // Плавный скролл
+    chapter4.scrollIntoView({ behavior: "smooth", block: "start" }); // Плавный скролл с начальной позиции
   });
 
   // Скрытие стрелки при достижении 4-й главы
@@ -332,13 +332,16 @@
 
     if (chapter4Position <= viewportHeight / 2) {
       // Если Глава 4 уже видна, скрываем стрелку
-      scrollButton.style.display = "none";
+      scrollButton.style.opacity = "0"; // Плавное исчезновение
+      scrollButton.style.pointerEvents = "none"; // Отключаем кликабельность
     } else {
       // Если Глава 4 не видна, показываем стрелку
-      scrollButton.style.display = "flex";
+      scrollButton.style.opacity = "1"; // Плавное появление
+      scrollButton.style.pointerEvents = "auto"; // Включаем кликабельность
     }
   });
 </script>
+
 
 
 
