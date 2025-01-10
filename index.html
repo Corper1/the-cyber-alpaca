@@ -317,45 +317,29 @@
 </div>
 
 <script>
-  // Таймер, связанный с изменением текста стрелки
-  const startDate = new Date("2025-01-10T22:00:00-05:00").getTime(); // Время начала таймера
-  const endDate = startDate + 24 * 60 * 60 * 1000; // 24 часа после запуска таймера
+  const scrollButton = document.getElementById("scroll-button"); // Стрелка
+  const chapter4 = document.querySelector("section:last-of-type"); // Последняя секция (Глава 4)
 
-  const updateScrollText = () => {
-    const now = new Date().getTime();
-    const scrollText = document.getElementById("scroll-text");
-
-    if (now >= endDate) {
-      scrollText.textContent = "New update is available!"; // После окончания таймера
-    } else {
-      scrollText.textContent = "A big update is coming."; // До окончания таймера
-    }
-  };
-
-  // Обновление текста стрелки каждые 1 секунду
-  setInterval(updateScrollText, 1000);
-
-  // Скролл на четвёртую главу
-  const scrollButton = document.getElementById("scroll-button");
-  const chapter4 = document.querySelector('section:last-of-type'); // Глава 4
-
+  // Скролл вниз к четвёртой главе
   scrollButton.addEventListener("click", () => {
-    chapter4.scrollIntoView({ behavior: 'smooth' }); // Плавный скролл
+    chapter4.scrollIntoView({ behavior: "smooth" }); // Плавный скролл
   });
 
   // Скрытие стрелки при достижении 4-й главы
   window.addEventListener("scroll", () => {
-    const scrollButton = document.getElementById("scroll-button");
-    const chapter4Position = chapter4.getBoundingClientRect().top; // Позиция главы 4 относительно окна
-    const viewportHeight = window.innerHeight;
+    const chapter4Position = chapter4.getBoundingClientRect().top; // Расстояние от верха экрана до начала главы 4
+    const viewportHeight = window.innerHeight; // Высота экрана
 
     if (chapter4Position <= viewportHeight / 2) {
-      scrollButton.style.display = "none"; // Скрываем стрелку
+      // Если Глава 4 уже видна, скрываем стрелку
+      scrollButton.style.display = "none";
     } else {
-      scrollButton.style.display = "flex"; // Показываем стрелку
+      // Если Глава 4 не видна, показываем стрелку
+      scrollButton.style.display = "flex";
     }
   });
 </script>
+
 
 
 </body>
