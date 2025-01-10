@@ -285,6 +285,64 @@
       <a href="https://yourwebsite.com" class="website" target="_blank">pump.fun</a>
     </div>
   </footer>
+  <!-- Добавьте в HTML перед закрывающим тегом </body> -->
+<div id="scroll-button" style="
+  position: fixed;
+  bottom: 50px; /* Смещено от нижнего края */
+  right: 100px; /* Смещено от правого края к центру */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+">
+  <!-- Стрелка -->
+  <span style="
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ffef;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-right: 10px; /* Расстояние между стрелкой и текстом */
+  "></span>
+  <!-- Текст -->
+  <p id="scroll-text" style="
+    margin: 0;
+    font-size: 1em;
+    color: #00ffef;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  ">
+    A big update is coming.
+  </p>
+</div>
+
+<script>
+  // Таймер, связанный с изменением текста стрелки
+  const startDate = new Date("2025-01-10T22:00:00-05:00").getTime(); // Время начала таймера
+  const endDate = startDate + 24 * 60 * 60 * 1000; // 24 часа после запуска таймера
+
+  const updateScrollText = () => {
+    const now = new Date().getTime();
+    const scrollText = document.getElementById("scroll-text");
+
+    if (now >= endDate) {
+      scrollText.textContent = "New update is available!"; // После окончания таймера
+    } else {
+      scrollText.textContent = "A big update is coming."; // До окончания таймера
+    }
+  };
+
+  // Обновление текста стрелки каждые 1 секунду
+  setInterval(updateScrollText, 1000);
+
+  // Скролл на четвёртую главу
+  const scrollButton = document.getElementById("scroll-button");
+  scrollButton.addEventListener("click", () => {
+    const chapter4 = document.querySelector('section:last-of-type'); // Глава 4
+    chapter4.scrollIntoView({ behavior: 'smooth' }); // Плавный скролл
+  });
+</script>
+
 </body>
 </html>
 
