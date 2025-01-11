@@ -238,23 +238,18 @@
 
 <!-- Скрипт для таймера -->
 <script>
-  // Настраиваем дату начала отсчёта и целевую дату
-  const startDate = new Date("2025-01-10T22:00:00-05:00").getTime(); // 10 января 2025, 22:00 EST
-  const targetDate = startDate + (24 * 60 * 60 * 1000); // Добавляем 24 часа
+  // Устанавливаем фиксированное время старта в UTC
+  const startDate = new Date("2025-01-10T22:00:00Z").getTime(); // UTC
+  const TIMER_DURATION = 24 * 60 * 60 * 1000; // 24 часа в миллисекундах
+  const targetDate = startDate + TIMER_DURATION;
 
   const countdown = document.getElementById("countdown");
 
-  const updateCountdown = () => {
-    const now = new Date().getTime();
-
-    // Если текущее время меньше времени запуска, отображаем сообщение ожидания
-    if (now < startDate) {
-      countdown.innerHTML = "Awaiting countdown start...";
-      return;
-    }
+  function updateCountdown() {
+    const now = new Date().getTime(); // Текущее время в миллисекундах (UTC)
+    const distance = targetDate - now;
 
     // Если отсчёт завершён
-    const distance = targetDate - now;
     if (distance <= 0) {
       countdown.innerHTML = "The wait is over!";
       return;
@@ -263,19 +258,20 @@
     // Расчёт оставшегося времени
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor((distance % (1000 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Обновление таймера
-    document.getElementById("days").textContent = days.toString().padStart(2, '0');
-    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-  };
+    // Обновление отображения таймера
+    document.getElementById("days").textContent = days.toString().padStart(2, "0");
+    document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+  }
 
-  // Обновление таймера каждую секунду
+  // Обновляем таймер каждую секунду
   setInterval(updateCountdown, 1000);
 </script>
+
 
 
   <!-- Футер с ссылками -->
