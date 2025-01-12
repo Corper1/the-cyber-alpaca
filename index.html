@@ -64,6 +64,8 @@ p {
     max-width: 600px;
     margin-bottom: 1em;
     color: #cccccc;
+    opacity: 0; /* Начальное состояние текста */
+    transition: opacity 1s ease-in-out; /* Плавное появление текста */
 }
 
 /* Для секций */
@@ -155,14 +157,30 @@ section > * {
 }
 
 #ca-address {
-    position: fixed;
-    bottom: 20px;
-    left: 30px;
-    font-size: 0.9em;
-    color: #fff;
-    word-break: break-word;
-    z-index: 9999;
+  cursor: pointer; /* Указывает, что элемент кликабельный */
+  user-select: none; /* Отключаем выделение текста вручную */
+  position: fixed; /* Закрепляем текст относительно окна браузера */
+  bottom: -200px; /* Отступ от нижнего края экрана */
+  left: -750px; /* Отступ от левого края экрана */
+  padding: 10px 20px; /* Отступы вокруг текста */
+  font-size: 1em; /* Размер текста */
+  font-weight: bold; /* Жирный текст */
+  color: #000; /* Чёрный текст */
+  background-color: rgba(255, 255, 255, 0.8); /* Белый полупрозрачный фон */
+  border-radius: 10px; /* Скруглённые углы */
+  border: 2px solid #f4d03f; /* Легкая желтая окантовка */
+  box-shadow: 0 0 15px rgba(244, 208, 63, 0.5); /* Желтая "тень" */
+  z-index: 9999; /* Высокий индекс для видимости */
+  text-align: center; /* Выравниваем текст по центру */
+  user-select: text; /* Разрешаем выделение текста */
 }
+
+#ca-address:hover {
+  background-color: #00d1c1; /* Изменение цвета при наведении */
+  transform: scale(1.1); /* Лёгкое увеличение */
+}
+
+
 
 /* Переходный слой */
 .transition-overlay {
@@ -240,6 +258,89 @@ footer {
 .chapter-background.visible {
   opacity: 1;
 }
+
+/* Слой затемнения */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 1); /* Полное затемнение */
+  opacity: 1; /* Начальное состояние */
+  transition: opacity 2s ease-in-out; /* Плавное изменение */
+  z-index: 1; /* Позади основного контента */
+}
+
+section > * {
+  position: relative;
+  z-index: 2; /* Поверх слоя затемнения */
+}
+
+p {
+  opacity: 0; /* Начальное состояние текста */
+  transition: opacity 1s ease-in-out; /* Плавное появление текста */
+}
+
+/* Стиль для пользовательского курсора */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2px; /* Толщина линии */
+  height: 40px; /* Длина линии */
+  background: #00ffef; /* Цвет неона */
+  box-shadow: 0 0 10px #00ffef, 0 0 20px #00ffef; /* Эффект свечения */
+  pointer-events: none; /* Курсор не мешает кликам */
+  z-index: 10000; /* Поверх всех элементов */
+  transform: translate(-50%, -50%); /* Центрируем линию по координатам */
+}
+
+body {
+  cursor: none;
+}
+
+/* Убираем стандартный курсор на всех интерактивных элементах */
+button, a {
+  cursor: none !important;
+}
+button {
+  user-select: none; /* Отключаем выделение текста */
+}
+h1 {
+  user-select: none; /* Отключаем выделение текста */
+}
+
+#ca-address .label {
+  font-weight: bold; /* Выделяем метку "CA:" */
+  user-select: none; /* Запрещаем копирование метки */
+}
+
+#ca-address .copy-text {
+  user-select: text; /* Разрешаем копирование основного текста */
+}
+.copy-notification {
+  position: fixed;
+  bottom: 80px; /* Отступ над текстом CA: */
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8); /* Тёмный фон */
+  color: #fff; /* Белый текст */
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10000; /* Поверх всех элементов */
+  animation: fade-in-out 2s ease-in-out; /* Плавное появление и исчезновение */
+}
+
+/* Анимация для уведомления */
+@keyframes fade-in-out {
+  0% { opacity: 0; transform: translateY(10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
 </style>
 
 
@@ -270,6 +371,7 @@ footer {
       <button onclick="scrollToSection('chapter3')">Chapter 3</button>
       <button onclick="scrollToSection('chapter4')">Chapter 4</button>
       <button onclick="scrollToSection('chapter5')">Chapter 5</button>
+      <button id="ca-address">CA: GJSscBdApump</button>
     </div>
     <!-- Кнопки в правом нижнем углу -->
     <div class="right-corner">
@@ -279,31 +381,31 @@ footer {
   </div>
 </div>
 
-<!-- Текст CA -->
-<p id="ca-address">CA: GJSscBdAbPZwNaiJPQRNaBUHjDTTekLWohSZmVcpump</p>
+
 
 <!-- Главы -->
 <section id="chapter1" style="background-image: url('images/cave.png');">
+  <div class="background-overlay"></div>
   <h2>Chapter 1</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
     Once upon a time in the mountains of a peaceful region, a regular alpaca named Alpaca was born. As a young cria, Alpaca was carefree and vulnerable, spending her days grazing on hilltops and playing with other alpacas. Her soft fleece and good-natured temperament quickly made her the favorite of the entire herd. However, the world around Alpaca was rapidly changing: technology began to penetrate even the most remote corners, and fate led her down a path that would change her life forever. One day, while exploring an ancient cave near the mountains, Alpaca came across a mysterious device left by long-gone explorers. It was something like an old computer or artifact embedded in the rock, with a flickering screen and complex symbols. Curiosity overcame caution, and Alpaca touched the device. In that moment, something incredible happened: a stream of data and energy flowed through her body, transforming her—her eyes began to shine with laser light, and her fleece started to shimmer with neon hues. Now, Alpaca possessed cybernetic implants that opened the doors to the digital world.
   </p>
 </section>
-
 <section id="chapter2" style="background-image: url('images/oldtown.png');">
+  <div class="background-overlay"></div>
   <h2>Chapter 2</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends. However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home.Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
+    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends. However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home. Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
   </p>
-  </section>
+</section>
 
 <section id="chapter3" style="background-image: url('images/underattack.png');">
+  <div class="background-overlay"></div>
   <h2>Chapter 3</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life.The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world.A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
+    But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life. The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier. Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world. A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
   </p>
- </section>
-
+</section>
 <section id="chapter4" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/coming-soon.jpg');">
   <h2>Chapter 4</h2>
   <p>Coming Soon</p>
@@ -320,214 +422,202 @@ footer {
   <h2>Chapter 5</h2>
   <p>Content for chapter 5 will be added...</p>
 </section>
-
+<div class="custom-cursor" id="custom-cursor"></div>
+  <p id="ca-address">
+    <span class="label">CA: </span>
+    <span class="copy-text">DТут пишем код монеты</span>
+  </p>
 </body>
 
 
 <script>
-  // Функция плавного скролла к секции
-  function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+// Таймер обратного отсчёта
+const startDate = new Date(Date.UTC(2025, 0, 12, 9, 0, 0)).getTime();
+const targetDate = startDate + 24 * 60 * 60 * 1000;
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance <= 0) {
+    document.getElementById("countdown").innerHTML = "The wait is over!";
+    return;
   }
 
-  // Таймер обратного отсчёта
-  const startDate = new Date(Date.UTC(2025, 0, 11, 3, 0, 0)).getTime();
-  const targetDate = startDate + 24 * 60 * 60 * 1000;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+  document.getElementById("days").textContent = days.toString().padStart(2, '0');
+  document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+  document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+  document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+}
 
-    if (distance <= 0) {
-      document.getElementById("countdown").innerHTML = "The wait is over!";
-      return;
-    }
+setInterval(updateCountdown, 1000);
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = days.toString().padStart(2, '0');
-    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-  }
-
-  setInterval(updateCountdown, 1000);
-
-  // Анимация частиц
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  const particles = [];
-  const maxParticles = 30;
-
-  const colors = [
-    'rgba(255, 255, 255, 0.5)',
-    'rgba(0, 255, 255, 0.5)',
-    'rgba(0, 255, 0, 0.5)'
-  ];
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.color = colors[Math.floor(Math.random() * colors.length)];
-      this.speedX = Math.random() * 2 - 1;
-      this.speedY = Math.random() * 2 - 1;
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  }
-
-  function handleParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(particle => {
-      particle.update();
-      particle.draw();
-    });
-
-    while (particles.length < maxParticles) {
-      particles.push(new Particle());
-    }
-  }
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function animateParticles() {
-    handleParticles();
-    requestAnimationFrame(animateParticles);
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  animateParticles();
-
-  // Управление фоном, текстом и прокруткой
-  const sections = document.querySelectorAll('section');
-  const activeSections = new Set();
-  let isAnimating = false;
-
-  // Инициализация фонов и скрытие текста
-  function initializeSections() {
-    sections.forEach((section, index) => {
-      if (index === 0) {
-        section.style.background = 'rgba(0, 0, 0, 0.5)';
-      } else {
-        section.style.background = 'rgba(0, 0, 0, 1)';
-        section.style.transition = 'background 2s ease-in-out';
-        const texts = section.querySelectorAll('p');
-        texts.forEach((text) => {
-          text.style.opacity = '0'; // Скрываем текст
-        });
-      }
-    });
-  }
-
-  function disableScrollDown() {
-    window.addEventListener('wheel', handleScroll, { passive: false });
-  }
-
-  function enableScrollDown() {
-    window.removeEventListener('wheel', handleScroll, { passive: false });
-  }
-
-  function handleScroll(event) {
-    if (event.deltaY > 0 && isAnimating) {
-      event.preventDefault();
-    }
-  }
-
-  function typeTextWithDelay(textElement, background, callback) {
-    let index = 0;
-    const text = textElement.textContent;
-    textElement.textContent = '';
-    textElement.style.opacity = '1'; // Показываем текст
-    const interval = setInterval(() => {
-      if (index < text.length) {
-        textElement.textContent += text[index];
-        index++;
-      } else {
-        clearInterval(interval);
-        callback();
-      }
-    }, 10);
-
-    // Запуск таймера для фона через 8 секунд
+// Прокрутка к секции с активацией анимации
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
     setTimeout(() => {
-      background.style.background = 'rgba(0, 0, 0, 0.5)';
-    }, 8000);
+      animateSection(section); // Запускаем анимацию после прокрутки
+    }, 500); // Небольшая задержка для плавного перехода
   }
+}
 
-  function animateSection(section) {
-    if (activeSections.has(section)) return;
+// Анимация печати текста
+function typeTextWithDelay(textElement, speed = 8) {
+  let index = 0;
+  const text = textElement.textContent.trim();
+  textElement.textContent = ''; // Очищаем текст
+  textElement.style.opacity = '1'; // Показываем текст
 
-    activeSections.add(section);
-    if (!isAnimating) {
-      isAnimating = true;
-      disableScrollDown();
-
-      // Блокировка прокрутки вниз на 4 секунды
-      setTimeout(() => {
-        enableScrollDown();
-      }, 4000);
-
-      const textElements = section.querySelectorAll('p');
-      const background = section;
-
-      textElements.forEach((textElement, index) => {
-        typeTextWithDelay(textElement, background, () => {
-          if (index === textElements.length - 1) {
-            isAnimating = false;
-          }
-        });
-      });
+  const interval = setInterval(() => {
+    if (index < text.length) {
+      textElement.textContent += text[index];
+      index++;
+    } else {
+      clearInterval(interval);
     }
+  }, speed); // Скорость печатания текста
+}
+
+// Уменьшение затемнения слоя
+function fadeBackground(section) {
+  const backgroundOverlay = section.querySelector('.background-overlay');
+  if (backgroundOverlay) {
+    setTimeout(() => {
+      backgroundOverlay.style.transition = 'opacity 5s ease-in-out'; // Более медленное высветление
+      backgroundOverlay.style.opacity = '0.4'; // Итоговое значение затемнения
+    }, 7000); // Через 8 секунд
   }
+}
 
-  document.addEventListener('mousemove', (event) => {
-    const cursorX = event.clientX;
-    const cursorY = event.clientY;
+// Анимация текста и фона для текущей секции
+function animateSection(section) {
+  const texts = section.querySelectorAll('p');
 
-    sections.forEach((section) => {
-      const rect = section.getBoundingClientRect();
-
-      if (
-        cursorX >= rect.left &&
-        cursorX <= rect.right &&
-        cursorY >= rect.top &&
-        cursorY <= rect.bottom
-      ) {
-        animateSection(section);
-      }
-    });
+  texts.forEach((text, index) => {
+    setTimeout(() => {
+      typeTextWithDelay(text, 20); // Ускоренная скорость печати
+    }, index * 500); // Задержка между абзацами
   });
 
-  // Инициализация фонов, текста, частиц и таймера
-  initializeSections();
-</script>
+  fadeBackground(section); // Запускаем уменьшение затемнения
+}
 
+// Анимация частиц
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+const particles = [];
+const maxParticles = 30;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 3 + 1;
+    this.speedX = Math.random() * 2 - 1;
+    this.speedY = Math.random() * 2 - 1;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.fill();
+  }
+}
+
+function handleParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((particle) => {
+    particle.update();
+    particle.draw();
+  });
+
+  while (particles.length < maxParticles) {
+    particles.push(new Particle());
+  }
+}
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function animateParticles() {
+  handleParticles();
+  requestAnimationFrame(animateParticles);
+}
+
+window.addEventListener('resize', resizeCanvas);
+animateParticles();
+
+// Получаем элемент пользовательского курсора
+const customCursor = document.getElementById('custom-cursor');
+
+// Отслеживаем движение мыши
+document.addEventListener('mousemove', (e) => {
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
+
+  // Устанавливаем позицию пользовательского курсора
+  customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+});
+
+// Убираем стандартный курсор
+document.body.style.cursor = 'none';
+
+// Копирование текста при клике на элемент #ca-address
+document.getElementById('ca-address').addEventListener('click', () => {
+  // Получаем текст внутри элемента .copy-text
+  const textToCopy = document.querySelector('#ca-address .copy-text').textContent;
+
+  // Создаём временный элемент для копирования
+  const tempElement = document.createElement('textarea');
+  tempElement.value = textToCopy;
+  document.body.appendChild(tempElement);
+
+  // Выделяем текст и копируем в буфер обмена
+  tempElement.select();
+  document.execCommand('copy');
+
+  // Удаляем временный элемент
+  document.body.removeChild(tempElement);
+
+  // Показать уведомление "Скопировано!"
+  showCopyNotification();
+});
+
+// Функция для показа уведомления
+function showCopyNotification() {
+  const notification = document.createElement('div');
+  notification.textContent = 'Successfully copied!';
+  notification.classList.add('copy-notification');
+  document.body.appendChild(notification);
+
+  // Удаляем уведомление через 2 секунды
+  setTimeout(() => {
+    notification.remove();
+  }, 2000);
+}
+
+
+
+</script>
 
 </body>
 </html>
-
