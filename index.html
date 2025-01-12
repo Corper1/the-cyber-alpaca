@@ -105,27 +105,28 @@ section > * {
 }
 
 .navigation button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #00ffef;
-    color: #000;
-    transition: background-color 0.3s, transform 0.3s;
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  border: 2px solid #00ffef; /* Неоновая рамка */
+  border-radius: 5px; /* Скруглённые углы */
+  font-size: 1em; /* Размер текста */
+  font-weight: bold; /* Жирный текст */
+  cursor: pointer; /* Курсор в виде руки */
+  background-color: transparent; /* Прозрачный фон */
+  color: #00ffef; /* Цвет текста */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 .navigation button:hover {
-    background-color: #00d1c1;
-    transform: scale(1.1);
+  background-color: rgba(0, 255, 239, 0.2); /* Лёгкое свечение фона при наведении */
+  color: #fff; /* Белый текст при наведении */
+  transform: scale(1.1); /* Лёгкое увеличение кнопки */
 }
 
 /* Кнопки в правом нижнем углу */
 .right-corner {
     position: fixed;
-    bottom: -200px;
-    right: -710px;
+    bottom: -150px;
+    right: -739px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -138,6 +139,7 @@ section > * {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    
     font-size: 1em;
     color: #000;
     background-color: #00ffef;
@@ -340,6 +342,40 @@ h1 {
   90% { opacity: 1; }
   100% { opacity: 0; transform: translateY(10px); }
 }
+/* Контейнер стрелки */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7); /* Тёмный фон */
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Плавное изменение прозрачности */
+}
+
+.back-to-top .arrow {
+  font-size: 2em;
+  color: #00ff00; /* Цвет стрелки */
+}
+
+.back-to-top .text {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #fff; /* Цвет текста */
+  text-align: center;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+  opacity: 0.9; /* Увеличенная прозрачность при наведении */
+}
+
+
 
 </style>
 
@@ -361,7 +397,7 @@ h1 {
 </div>
 
 <!-- Главная страница -->
-<div class="hero">
+<div class="hero" id="home-page">
   <canvas id="particle-canvas"></canvas>
   <div class="hero-content">
     <h1>Cyber Alpaca</h1>
@@ -378,6 +414,11 @@ h1 {
       <a href="https://x.com/CyberAlpaca2025" target="_blank" class="twitter">Twitter</a>
       <a href="https://yourwebsite.com" target="_blank" class="website">Pump.fun</a>
     </div>
+    <!-- Стрелка для возврата на главную -->
+    </div>
+<div id="back-to-top" class="back-to-top" onclick="scrollToSection('home-page')">
+      <div class="arrow">↑</div>
+      <div class="text">TO THE MOON</div>
   </div>
 </div>
 
@@ -428,6 +469,9 @@ h1 {
     <span class="copy-text">DТут пишем код монеты</span>
   </p>
 </body>
+
+
+
 
 
 <script>
@@ -498,49 +542,62 @@ function fadeBackground(section) {
 
 // Анимация текста и фона для текущей секции
 function animateSection(section) {
-  const texts = section.querySelectorAll('p');
+    const texts = section.querySelectorAll('p');
 
-  texts.forEach((text, index) => {
-    setTimeout(() => {
-      typeTextWithDelay(text, 20); // Ускоренная скорость печати
-    }, index * 500); // Задержка между абзацами
-  });
+    texts.forEach((text, index) => {
+        setTimeout(() => {
+            typeTextWithDelay(text, 20); // Скорость печати текста
+        }, index * 500); // Задержка между абзацами
+    });
 
-  fadeBackground(section); // Запускаем уменьшение затемнения
+    fadeBackground(section); // Запускаем уменьшение затемнения
 }
 
-// Анимация частиц
+
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 const particles = [];
-const maxParticles = 30;
+let maxParticles = 40; // Количество частиц (измените здесь для увеличения или уменьшения количества)
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Массив возможных цветов частиц
+const colors = [
+  'rgba(128, 128, 128, 1)', // Серый
+  ];
+
+// Класс частицы
 class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 3 + 1;
+    this.size = Math.random() * 3 + 1; // Размер частицы
     this.speedX = Math.random() * 2 - 1;
     this.speedY = Math.random() * 2 - 1;
+    this.color = colors[Math.floor(Math.random() * colors.length)]; // Случайный цвет
   }
+
+  // Обновление позиции частицы
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
 
+    // Отражение от стен
     if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
     if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
   }
+
+  // Рисование частицы
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.fillStyle = this.color;
     ctx.fill();
   }
 }
 
+// Создание и управление частицами
 function handleParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach((particle) => {
@@ -548,22 +605,31 @@ function handleParticles() {
     particle.draw();
   });
 
+  // Добавляем частицы, если их меньше заданного количества
   while (particles.length < maxParticles) {
     particles.push(new Particle());
   }
+
+  // Убираем лишние частицы
+  if (particles.length > maxParticles) {
+    particles.splice(0, particles.length - maxParticles);
+  }
 }
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
+// Анимация
 function animateParticles() {
   handleParticles();
   requestAnimationFrame(animateParticles);
 }
 
+// Обновление размеров холста при изменении окна
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 animateParticles();
 
 // Получаем элемент пользовательского курсора
@@ -614,6 +680,63 @@ function showCopyNotification() {
     notification.remove();
   }, 2000);
 }
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            animateSection(section); // Запускаем анимацию после прокрутки
+        }, 500); // Задержка для плавного перехода
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('back-to-top');
+    const homePage = document.getElementById('home-page');
+
+    if (!backToTopButton || !homePage) {
+        console.error("Back-to-Top button или Home Page не найдены.");
+        return;
+    }
+
+    // Обработка прокрутки
+    window.addEventListener('scroll', () => {
+        const homePageRect = homePage.getBoundingClientRect();
+
+        // Если пользователь полностью на home-page
+        if (homePageRect.top >= 0 && homePageRect.bottom <= window.innerHeight) {
+            backToTopButton.style.display = 'none'; // Скрываем кнопку
+        } else {
+            backToTopButton.style.display = 'flex'; // Показываем кнопку
+        }
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('back-to-top');
+    const homePage = document.getElementById('home-page');
+
+    if (!backToTopButton || !homePage) {
+        console.error("Back-to-Top button или Home Page не найдены.");
+        return;
+    }
+
+    // Обработка прокрутки
+    window.addEventListener('scroll', () => {
+        const homePageRect = homePage.getBoundingClientRect();
+
+        // Если пользователь полностью на home-page
+        if (homePageRect.top >= 0 && homePageRect.bottom <= window.innerHeight) {
+            backToTopButton.style.opacity = '0.5'; // Стрелка становится полупрозрачной
+            backToTopButton.style.pointerEvents = 'none'; // Отключаем клики
+        } else {
+            backToTopButton.style.opacity = '1'; // Стрелка возвращается к нормальной видимости
+            backToTopButton.style.pointerEvents = 'auto'; // Включаем клики
+        }
+    });
+});
 
 
 
