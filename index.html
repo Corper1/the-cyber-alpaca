@@ -5,346 +5,527 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cyber Alpaca</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0d0d0d;
-      color: #fff;
-      text-align: center;
-    }
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-image:url('images/backgroundalpaca.png');
- /* Замените на URL вашего изображения */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      padding: 0 20px;
-    }
-    /* Добавление затемнения для лучшей читабельности текста */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Прозрачный чёрный слой */
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
-      color: #00ffef;
-    }
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin-bottom: 1em;
-      color: #cccccc;
-    }
-    #countdown-description {
-      font-size: 1.5em;
-      color: #00ffef;
-      margin: 10px 0;
-    }
-    #countdown {
-      font-size: 2em;
-      color: #00ffef;
-      text-align: center;
-      margin: 20px 0;
-    }
-    section {
-      padding: 50px;
-    }
-    footer {
-      padding: 20px;
-      text-align: center;
-      background-color: #0d0d0d;
-    }
-    .links a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-      color: #fff;
-    }
-    .links a.twitter {
-      background-color: #1da1f2;
-    }
-    .links a.website {
-      background-color: #28a745;
-    }
-    .links a:hover {
-      opacity: 0.8;
-    }
-/* Добавьте этот код внутрь <style> */
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+    box-sizing: border-box; /* Учитываем padding во всех элементах */
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/backgroundalpaca.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачное затемнение */
+    z-index: 1;
+}
+
 .hero-content {
-  position: relative;
-  z-index: 2;
+    position: absolute; /* Устанавливаем абсолютное позиционирование */
+    top: 50%; /* Начальное положение по вертикали */
+    left: 50%; /* Начальное положение по горизонтали */
+    transform: translate(-50%, -50%); /* Центрируем относительно указанных координат */
+    z-index: 3; /* Поднимаем поверх частиц */
+    text-align: center; /* Выравнивание текста */
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    color: #00ffef;
+}
+
+p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin-bottom: 1em;
+    color: #cccccc;
+}
+
+/* Для секций */
+section {
+    position: relative;
+    min-height: 100vh;
+    padding: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Прозрачный слой */
+    z-index: 1;
+}
+
+section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Навигационные кнопки */
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.navigation button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #00ffef;
+    color: #000;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navigation button:hover {
+    background-color: #00d1c1;
+    transform: scale(1.1);
+}
+
+/* Кнопки в правом нижнем углу */
+.right-corner {
+    position: fixed;
+    bottom: -200px;
+    right: -710px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 4;
+}
+
+.right-corner a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    color: #000;
+    background-color: #00ffef;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.right-corner a:hover {
+    background-color: #00d1c1;
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+/* Таймер */
+#countdown {
+    font-size: 2em;
+    color: #00ffef;
+}
+
+#ca-address {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    font-size: 0.9em;
+    color: #fff;
+    word-break: break-word;
+    z-index: 9999;
+}
+
+/* Переходный слой */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Черный экран */
+    z-index: 9999; /* Высокий индекс */
+    opacity: 0; /* Стартовое состояние */
+    transition: opacity 1s ease-in-out; /* Плавное появление */
+    pointer-events: none; /* Чтобы не мешал кликам */
+}
+
+h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #0d0d0d;
+}
+
+/* Чёрный фон и текст главы */
+.chapter-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
-  animation: fadeIn 2s ease-in-out forwards;
+  z-index: 9999;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+.chapter-transition.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-  </style>
+.typing-text {
+  font-size: 2rem;
+  text-align: center;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  animation: blink-cursor 0.6s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from { border-color: transparent; }
+  to { border-color: #fff; }
+}
+
+.chapter-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.chapter-background.visible {
+  opacity: 1;
+}
+</style>
+
+
+
+
+
+
 </head>
 <body>
-  <!-- Главная страница (фиктивный таймер) -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>Cyber Alpaca</h1>
-    <p>
-      An alpaca from the digital age with laser eyes and cybernetic implants. It lives in a dark neon world of crypto-technologies. Read the story below.
-    </p>
-    <p id="countdown-description">
-      Until token launch
-    </p>
-    <!-- Фиктивный таймер -->
-    <div id="static-countdown">
-      <span>00</span> days
-      <span>00</span> hours
-      <span>00</span> minutes
-      <span>00</span> seconds
-    </div>
-    <p style="color: white; margin-top: 20px;">
-      CA:
-    </p>
+  <!-- Затемняющий слой для переходов -->
+<div class="transition-overlay" id="transition-overlay"></div>
+
+<!-- Текст для названия главы -->
+<div class="chapter-transition" id="chapter-transition">
+  <div>
+    <div class="typing-text" id="chapter-typing"></div>
   </div>
 </div>
 
-  <!-- Пример дополнительных секций для прокрутки -->
-  <section style="
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-              url('images/cave.png') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-">
-  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">The Story. Chapter 1</h2>
+<!-- Главная страница -->
+<div class="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-content">
+    <h1>Cyber Alpaca</h1>
+    <div class="navigation">
+      <button onclick="scrollToSection('chapter1')">Chapter 1</button>
+      <button onclick="scrollToSection('chapter2')">Chapter 2</button>
+      <button onclick="scrollToSection('chapter3')">Chapter 3</button>
+      <button onclick="scrollToSection('chapter4')">Chapter 4</button>
+      <button onclick="scrollToSection('chapter5')">Chapter 5</button>
+    </div>
+    <!-- Кнопки в правом нижнем углу -->
+    <div class="right-corner">
+      <a href="https://x.com/CyberAlpaca2025" target="_blank" class="twitter">Twitter</a>
+      <a href="https://yourwebsite.com" target="_blank" class="website">Pump.fun</a>
+    </div>
+  </div>
+</div>
+
+<!-- Текст CA -->
+<p id="ca-address">CA: GJSscBdAbPZwNaiJPQRNaBUHjDTTekLWohSZmVcpump</p>
+
+<!-- Главы -->
+<section id="chapter1" style="background-image: url('images/cave.png');">
+  <h2>Chapter 1</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
-    Once upon a time in the mountains of a peaceful region, a regular alpaca named Alpaca was born. As a young cria, Alpaca was carefree and vulnerable, spending her days grazing on hilltops and playing with other alpacas. Her soft fleece and good-natured temperament quickly made her the favorite of the entire herd. However, the world around Alpaca was rapidly changing: technology began to penetrate even the most remote corners, and fate led her down a path that would change her life forever.
-  </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
-    One day, while exploring an ancient cave near the mountains, Alpaca came across a mysterious device left by long-gone explorers. It was something like an old computer or artifact embedded in the rock, with a flickering screen and complex symbols. Curiosity overcame caution, and Alpaca touched the device. In that moment, something incredible happened: a stream of data and energy flowed through her body, transforming her—her eyes began to shine with laser light, and her fleece started to shimmer with neon hues. Now, Alpaca possessed cybernetic implants that opened the doors to the digital world.
+    Once upon a time in the mountains of a peaceful region, a regular alpaca named Alpaca was born. As a young cria, Alpaca was carefree and vulnerable, spending her days grazing on hilltops and playing with other alpacas. Her soft fleece and good-natured temperament quickly made her the favorite of the entire herd. However, the world around Alpaca was rapidly changing: technology began to penetrate even the most remote corners, and fate led her down a path that would change her life forever. One day, while exploring an ancient cave near the mountains, Alpaca came across a mysterious device left by long-gone explorers. It was something like an old computer or artifact embedded in the rock, with a flickering screen and complex symbols. Curiosity overcame caution, and Alpaca touched the device. In that moment, something incredible happened: a stream of data and energy flowed through her body, transforming her—her eyes began to shine with laser light, and her fleece started to shimmer with neon hues. Now, Alpaca possessed cybernetic implants that opened the doors to the digital world.
   </p>
 </section>
 
-
- <section style="
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('images/oldtown.png') no-repeat center center;
-  background-size: 100%; /* Уменьшение масштаба изображения */
-  background-position: center center; /* Центрирование изображения */
-  color: #fff;
-  text-align: center;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-">
-  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Chapter Two</h2>
+<section id="chapter2" style="background-image: url('images/oldtown.png');">
+  <h2>Chapter 2</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends.
+    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends. However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home.Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
   </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home.
-  </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
-  </p>
-</section>
+  </section>
 
-
- <section style="
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('images/underattack.png') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-">
-  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Chapter Three</h2>
+<section id="chapter3" style="background-image: url('images/underattack.png');">
+  <h2>Chapter 3</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life.
+    But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life.The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world.A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
   </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier.
-  </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world.
-  </p>
-  <p style="max-width: 800px; margin: 20px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
-  </p>
-</section>
-<section style="
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('images/coming-soon.jpg') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-">
-  <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 2.5em;">Chapter 4</h2>
-  <p style="font-size: 1.5em; margin: 20px auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-    Coming Soon
-  </p>
-  <p id="countdown-description" style="font-size: 1.2em; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-    Chapter 4 will unlock in:
-  </p>
-  <!-- Рабочий таймер -->
-  <div id="countdown" style="font-size: 2em; color: #00ffef; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+ </section>
+
+<section id="chapter4" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/coming-soon.jpg');">
+  <h2>Chapter 4</h2>
+  <p>Coming Soon</p>
+  <p id="countdown-description">Chapter 4 will unlock in:</p>
+  <div id="countdown">
     <span id="days">00</span> days
     <span id="hours">00</span> hours
     <span id="minutes">00</span> minutes
     <span id="seconds">00</span> seconds
   </div>
-  <p style="font-size: 1.2em; margin-top: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-    it will unlock immediately if market cap reach <span style="color: #00ffef; font-weight: bold;">2M$</span>!
-  </p>
 </section>
 
-<!-- Скрипт для таймера -->
+<section id="chapter5" style="background: #666;">
+  <h2>Chapter 5</h2>
+  <p>Content for chapter 5 will be added...</p>
+</section>
+
+</body>
+
+
 <script>
-  // Настраиваем стартовую дату (11 января 2025, 03:00 UTC)
-  const startDate = new Date(Date.UTC(2025, 0, 11, 3, 0, 0)).getTime(); // 3:00 утра по UTC
-  const targetDate = startDate + 24 * 60 * 60 * 1000; // Добавляем 24 часа после старта
+  // Функция плавного скролла к секции
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
-  const countdown = document.getElementById("countdown");
+  // Таймер обратного отсчёта
+  const startDate = new Date(Date.UTC(2025, 0, 11, 3, 0, 0)).getTime();
+  const targetDate = startDate + 24 * 60 * 60 * 1000;
 
-  const updateCountdown = () => {
+  function updateCountdown() {
     const now = new Date().getTime();
-
-    // Если текущее время меньше времени старта
-    if (now < startDate) {
-      countdown.innerHTML = "Awaiting countdown start...";
-      return;
-    }
-
-    // Если отсчёт завершён
     const distance = targetDate - now;
+
     if (distance <= 0) {
-      countdown.innerHTML = "The wait is over!";
+      document.getElementById("countdown").innerHTML = "The wait is over!";
       return;
     }
 
-    // Расчёт оставшегося времени
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Обновление таймера
     document.getElementById("days").textContent = days.toString().padStart(2, '0');
     document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
     document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
     document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-  };
+  }
 
-  // Обновление таймера каждую секунду
   setInterval(updateCountdown, 1000);
-</script>
 
+  // Анимация частиц
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  const particles = [];
+  const maxParticles = 30;
 
+  const colors = [
+    'rgba(255, 255, 255, 0.5)',
+    'rgba(0, 255, 255, 0.5)',
+    'rgba(0, 255, 0, 0.5)'
+  ];
 
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  <!-- Футер с ссылками -->
-  <footer>
-    <div class="links">
-      <a href="https://x.com/CyberAlpaca2025" class="twitter" target="_blank">Twitter</a>
-      <a href="t" class="website" target="_blank">pump.fun</a>
-    </div>
-  </footer>
-  <!-- Добавьте в HTML перед закрывающим тегом </body> -->
-<div id="scroll-button" style="
-  position: fixed;
-  bottom: 50px; /* Смещено от нижнего края */
-  right: 100px; /* Смещено от правого края к центру */
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  z-index: 999;
-">
-  <!-- Стрелка -->
-  <span style="
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #00ffef;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    margin-right: 10px; /* Расстояние между стрелкой и текстом */
-  "></span>
-  <!-- Текст -->
-  <p id="scroll-text" style="
-    margin: 0;
-    font-size: 1em;
-    color: #00ffef;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-  ">
-    A big update is coming.
-  </p>
-</div>
-
-<script>
-  const scrollButton = document.getElementById("scroll-button"); // Стрелка
-  const chapter4 = document.querySelector("section:last-of-type"); // Последняя секция (Глава 4)
-
-  // Скролл вниз к четвёртой главе
-  scrollButton.addEventListener("click", () => {
-    chapter4.scrollIntoView({ behavior: "smooth", block: "start" }); // Плавный скролл с начальной позиции
-  });
-
-  // Скрытие стрелки при достижении 4-й главы
-  window.addEventListener("scroll", () => {
-    const chapter4Position = chapter4.getBoundingClientRect().top; // Расстояние от верха экрана до начала главы 4
-    const viewportHeight = window.innerHeight; // Высота экрана
-
-    if (chapter4Position <= viewportHeight / 2) {
-      // Если Глава 4 уже видна, скрываем стрелку
-      scrollButton.style.opacity = "0"; // Плавное исчезновение
-      scrollButton.style.pointerEvents = "none"; // Отключаем кликабельность
-    } else {
-      // Если Глава 4 не видна, показываем стрелку
-      scrollButton.style.opacity = "1"; // Плавное появление
-      scrollButton.style.pointerEvents = "auto"; // Включаем кликабельность
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.speedX = Math.random() * 2 - 1;
+      this.speedY = Math.random() * 2 - 1;
     }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  function handleParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+
+    while (particles.length < maxParticles) {
+      particles.push(new Particle());
+    }
+  }
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function animateParticles() {
+    handleParticles();
+    requestAnimationFrame(animateParticles);
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  animateParticles();
+
+  // Управление фоном, текстом и прокруткой
+  const sections = document.querySelectorAll('section');
+  const activeSections = new Set();
+  let isAnimating = false;
+
+  // Инициализация фонов и скрытие текста
+  function initializeSections() {
+    sections.forEach((section, index) => {
+      if (index === 0) {
+        section.style.background = 'rgba(0, 0, 0, 0.5)';
+      } else {
+        section.style.background = 'rgba(0, 0, 0, 1)';
+        section.style.transition = 'background 2s ease-in-out';
+        const texts = section.querySelectorAll('p');
+        texts.forEach((text) => {
+          text.style.opacity = '0'; // Скрываем текст
+        });
+      }
+    });
+  }
+
+  function disableScrollDown() {
+    window.addEventListener('wheel', handleScroll, { passive: false });
+  }
+
+  function enableScrollDown() {
+    window.removeEventListener('wheel', handleScroll, { passive: false });
+  }
+
+  function handleScroll(event) {
+    if (event.deltaY > 0 && isAnimating) {
+      event.preventDefault();
+    }
+  }
+
+  function typeTextWithDelay(textElement, background, callback) {
+    let index = 0;
+    const text = textElement.textContent;
+    textElement.textContent = '';
+    textElement.style.opacity = '1'; // Показываем текст
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        textElement.textContent += text[index];
+        index++;
+      } else {
+        clearInterval(interval);
+        callback();
+      }
+    }, 10);
+
+    // Запуск таймера для фона через 8 секунд
+    setTimeout(() => {
+      background.style.background = 'rgba(0, 0, 0, 0.5)';
+    }, 8000);
+  }
+
+  function animateSection(section) {
+    if (activeSections.has(section)) return;
+
+    activeSections.add(section);
+    if (!isAnimating) {
+      isAnimating = true;
+      disableScrollDown();
+
+      // Блокировка прокрутки вниз на 4 секунды
+      setTimeout(() => {
+        enableScrollDown();
+      }, 4000);
+
+      const textElements = section.querySelectorAll('p');
+      const background = section;
+
+      textElements.forEach((textElement, index) => {
+        typeTextWithDelay(textElement, background, () => {
+          if (index === textElements.length - 1) {
+            isAnimating = false;
+          }
+        });
+      });
+    }
+  }
+
+  document.addEventListener('mousemove', (event) => {
+    const cursorX = event.clientX;
+    const cursorY = event.clientY;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+
+      if (
+        cursorX >= rect.left &&
+        cursorX <= rect.right &&
+        cursorY >= rect.top &&
+        cursorY <= rect.bottom
+      ) {
+        animateSection(section);
+      }
+    });
   });
+
+  // Инициализация фонов, текста, частиц и таймера
+  initializeSections();
 </script>
-
-
 
 
 </body>
