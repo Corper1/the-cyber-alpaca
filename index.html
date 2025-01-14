@@ -57,6 +57,7 @@ h1 {
     font-size: 3em;
     margin-bottom: 0.5em;
     color: #00ffef;
+    
 }
 
 p {
@@ -375,6 +376,93 @@ h1 {
   opacity: 0.9; /* Увеличенная прозрачность при наведении */
 }
 
+#chapter4 {
+    position: relative;
+    height: 100vh; /* Секция на весь экран */
+    padding: 20px; /* Внутренние отступы */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chapter4-title {
+    position: absolute;
+    top: 10%; /* Высота заголовка — при необходимости измените для каждой главы */
+    font-size: 1.6em; /* Размер текста */
+    color: #fff; /* Цвет текста */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Тень, как в других главах */
+    text-align: center; /* Центрируем текст */
+}
+
+.chapter4-text {
+    position: absolute;
+    top: 40%; /* Высота текста */
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.chapter4-timer {
+    position: absolute;
+    top: 70%; /* Высота таймера */
+    font-size: 1.8em;
+    color: #00ffef;
+}
+
+.chapter5-section {
+    position: relative;
+    height: 100vh; /* Высота секции на весь экран */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Элементы выравниваются сверху */
+    align-items: center; /* Центрирование по горизонтали */
+    background-size: cover; /* Растягиваем фон */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.chapter5-title {
+    font-size: 1.6em;
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.chapter5-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center; /* Центрируем текст */
+    max-width: 600px; /* Максимальная ширина текста */
+}
+
+.animated-section {
+    background-size: cover; /* Заполняет экран, сохраняя пропорции */
+    background-position: center; /* Центрирует изображение */
+    background-repeat: no-repeat; /* Избегаем повторений */
+}
+
+/* Для планшетов */
+@media (max-width: 1024px) {
+    .animated-section {
+        background-image: url('images/tablet-image.jpg'); /* Оптимизированное изображение для планшетов */
+    }
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .animated-section {
+        background-image: url('images/mobile-image.jpg'); /* Оптимизированное изображение для мобильных устройств */
+    }
+}
+
+/* Общий стиль для текста в главах */
+section p {
+    max-width: 100%; /* Увеличиваем ширину текста до 90% ширины страницы */
+    margin: 0 auto; /* Центрируем текст относительно страницы */
+    text-align: justify; /* Выравниваем текст по ширине */
+    line-height: 1.8; /* Улучшаем читаемость */
+    font-size: 1.2em; /* Размер текста */
+}
+
+
 
 
 </style>
@@ -400,7 +488,12 @@ h1 {
 <div class="hero" id="home-page">
   <canvas id="particle-canvas"></canvas>
   <div class="hero-content">
-    <h1>Cyber Alpaca</h1>
+<h1 id="cyber-alpaca-header">Cyber Alpaca</h1>
+
+
+
+
+
     <div class="navigation">
       <button onclick="scrollToSection('chapter1')">Chapter 1</button>
       <button onclick="scrollToSection('chapter2')">Chapter 2</button>
@@ -425,48 +518,61 @@ h1 {
 
 
 <!-- Главы -->
-<section id="chapter1" style="background-image: url('images/cave.png');">
+<section id="chapter1" class="animated-section" style="background-image: url('images/chapterone.jpg');">
   <div class="background-overlay"></div>
   <h2>Chapter 1</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
-    Once upon a time in the mountains of a peaceful region, a regular alpaca named Alpaca was born. As a young cria, Alpaca was carefree and vulnerable, spending her days grazing on hilltops and playing with other alpacas. Her soft fleece and good-natured temperament quickly made her the favorite of the entire herd. However, the world around Alpaca was rapidly changing: technology began to penetrate even the most remote corners, and fate led her down a path that would change her life forever. One day, while exploring an ancient cave near the mountains, Alpaca came across a mysterious device left by long-gone explorers. It was something like an old computer or artifact embedded in the rock, with a flickering screen and complex symbols. Curiosity overcame caution, and Alpaca touched the device. In that moment, something incredible happened: a stream of data and energy flowed through her body, transforming her—her eyes began to shine with laser light, and her fleece started to shimmer with neon hues. Now, Alpaca possessed cybernetic implants that opened the doors to the digital world.
+    Once upon a time, in the mountains of a quiet and peaceful land, an ordinary alpaca named Alpaca was born. As a young cria, she spent her carefree days grazing on hilltops and playing with other alpacas. Her soft fleece and kind nature quickly made her the favorite of the entire herd.
+
+But even here, in this tranquil corner, it seemed the breath of a new era was approaching—far off in the distance, strange mechanical hums could sometimes be heard, out of place among the natural sounds. The world around was changing: technology was reaching even the most remote corners.
+
+One day, while exploring an ancient cave near the mountains, Alpaca stumbled upon a mysterious device left behind by long-vanished explorers. It looked alien, as if torn from another era: a smooth metallic body, coated with the dust of time, and a screen that glowed with a soft yet unsettling light. Her heart skipped a beat as her nose touched the cold metal, and the next moment, the screen flared with a bright light, as if welcoming a new owner.
+
+In that instant, something incredible happened: a stream of data and energy surged through her body, making the world around her vanish. Her mind filled with strange images and sounds she couldn’t comprehend. What was it? Knowledge? Voices? Her body no longer felt like her own—her fleece, now shimmering with neon hues, reminded her that she had become something greater than just an alpaca.
   </p>
 </section>
-<section id="chapter2" style="background-image: url('images/oldtown.png');">
+<section id="chapter2" class="animated-section" style="background-image: url('images/chaptertwosize.png');">
   <div class="background-overlay"></div>
   <h2>Chapter 2</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
-    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends. However, after some time, Alpaca realized that constant travel could not replace a true home. Together with a few other alpacas who had also embarked on their journey in the world of technology, she settled on the outskirts of a massive metropolis known as the Neon Frontier. This area marked the edge of the city, where towering glass and steel skyscrapers gave way to scattered laboratories, abandoned warehouses, and tech farms. There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home. Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, uncovered artifacts from old eras, and helped the local inhabitants. Their deeds ranged from rescuing lost drones to freeing captive robots used for illegal labor. With each passing day, their reputation grew, and the cyber-alpacas began to be known as guardians of order and technological explorers.
+    With new abilities, Alpaca embarked on a journey through cyberspaces and the real world. She visited metropolises filled with neon lights and futuristic technologies, meeting intelligent robots and other enhanced beings. Thanks to her skills, she could analyze complex data, hack old systems, and uncover hidden resources that helped her and her friends. However, after some time, Alpaca realized that constant travel could not replace a true home.
+
+After countless travels through dazzling neon metropolises and endless digital landscapes, Alpaca began to long for something more permanent. Despite all her discoveries and encounters with enhanced beings, she understood that nothing could replace the warmth of a true home. Together with a few other alpacas who had also embarked on their journeys in the world of technology, she settled on the outskirts of a massive metropolis known as Neon Frontier. This place lay on the edge of the city, where gleaming glass skyscrapers met the remnants of an older world: abandoned laboratories, overgrown tech farms, and experimental warehouses left behind by progress. Neon lights softly illuminated the outskirts, creating an atmosphere of both decay and potential.
+
+There, the alpacas created a cozy space that combined nature and technology: automated greenhouses, robotic assistants, and implants allowed them to feel at home. Their lives were full of adventures. The alpacas explored nearby districts, hacked forgotten data storages, unearthed artifacts from old eras, and helped the local inhabitants. Among their many deeds, they freed a group of drones trapped in an endless loop of corrupted programming and discovered a prototype AI that was thought to be lost. They handed this find over to the city archives, where it was recognized as a valuable relic of the past.
   </p>
 </section>
 
-<section id="chapter3" style="background-image: url('images/underattack.png');">
+<section id="chapter3" class="animated-section" style="background-image: url('images/underattack.png');">
   <div class="background-overlay"></div>
   <h2>Chapter 3</h2>
   <p style="max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 1.2em; line-height: 1.8;">
     But peaceful times did not last for long. One day, on the horizon of the Neon Frontier, massive silhouettes of war machines appeared, surrounded by a strange shimmering light. No one knew who controlled these machines or where they had come from, but their movements were precise, as if guided by a singular will. Rumors about a group known only as "Chrome" began to spread among the residents. Whispers claimed that their leader was something beyond human or machine, and their goal was total control and suppression of all free forms of life. The alpacas faced a difficult choice. Should they flee and find a new home? Or stay and defend the Neon Frontier, which they had already begun to call their own? Their doubts were only amplified by the attitudes of the local inhabitants. Many thanked the alpacas for their help, but others continued to view them as strange beings whose path through technology could bring danger. These disagreements caused divisions even among the residents of the Frontier. Within the alpaca community itself, tensions began to rise. Some believed that a battle was inevitable, that the home they had fought for was worth defending at any cost. Others suggested retreating to avoid total destruction. The tension grew as the shadows of the war machines crept closer to the borders of their new world. A decision had to be made quickly, but who could say which choice was the right one? The enemy's forces remained a mystery, their true intentions hidden behind the metallic walls of their machines. For the first time in a long while, Alpaca felt that her new community was on the brink of breaking apart. Would they manage to unite and stand strong, or would the Neon Frontier become nothing more than a fleeting memory?
   </p>
 </section>
-<section id="chapter4" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/coming-soon.jpg');">
-  <h2>Chapter 4</h2>
-  <p>Coming Soon</p>
-  <p id="countdown-description">Chapter 4 will unlock in:</p>
-  <div id="countdown">
+<section id="chapter4" class="animated-section" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/coming-soon.jpg');">
+  <h2 class="chapter4-title">Chapter 4</h2>
+<!-- <p class="chapter4-text">Coming Soon</p> -->
+<div id="countdown" class="chapter4-timer">
     <span id="days">00</span> days
     <span id="hours">00</span> hours
     <span id="minutes">00</span> minutes
     <span id="seconds">00</span> seconds
+</div>
+
   </div>
 </section>
 
-<section id="chapter5" style="background: #666;">
-  <h2>Chapter 5</h2>
-  <p>Content for chapter 5 will be added...</p>
+
+<section id="chapter5" class="chapter5-section animated-section" style="background-image: url('images/chapter5-background.jpg');">
+  <h2 class="chapter5-title">Chapter 5</h2>
+  <p class="chapter5-text">Content for chapter 5 will be added...</p>
 </section>
+
 <div class="custom-cursor" id="custom-cursor"></div>
   <p id="ca-address">
     <span class="label">CA: </span>
-    <span class="copy-text">will be later</span>   /// сюда вставляем адресс монеты
+    <span class="copy-text">I Will</span>
   </p>
 </body>
 
@@ -534,9 +640,9 @@ function fadeBackground(section) {
   const backgroundOverlay = section.querySelector('.background-overlay');
   if (backgroundOverlay) {
     setTimeout(() => {
-      backgroundOverlay.style.transition = 'opacity 5s ease-in-out'; // Более медленное высветление
+      backgroundOverlay.style.transition = 'opacity 8s ease-in-out'; // Более медленное высветление
       backgroundOverlay.style.opacity = '0.4'; // Итоговое значение затемнения
-    }, 7000); // Через 8 секунд
+    }, 1000); // Через Х секунд
   }
 }
 
@@ -737,6 +843,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.animated-section');
+    const observerOptions = {
+        root: null, // Наблюдение относительно viewport
+        threshold: 0.2 // Триггер при 20% видимости
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const section = entry.target;
+                animateSection(section); // Запускаем анимацию
+                observer.unobserve(section); // Убираем наблюдателя для этой секции
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section)); // Начинаем наблюдать за каждой секцией
+});
+
+
+function typeTextWithDelay(textElement, speed = 8) {
+    if (textElement.dataset.animating === "true") return; // Если анимация уже идёт, ничего не делаем
+    textElement.dataset.animating = "true"; // Устанавливаем флаг
+
+    let index = 0;
+    const text = textElement.textContent.trim();
+    textElement.textContent = '';
+    textElement.style.opacity = '1';
+
+    const interval = setInterval(() => {
+        if (index < text.length) {
+            textElement.textContent += text[index];
+            index++;
+        } else {
+            clearInterval(interval);
+            textElement.dataset.animating = "false"; // Сбрасываем флаг после завершения
+        }
+    }, speed);
+}
+
 
 
 
