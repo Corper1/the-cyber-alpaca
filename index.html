@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <title>Cyber Alpaca</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -98,8 +98,8 @@ section > * {
 }
 
 .navigation {
-    width: 30%; /* Устанавливаем ширину для кнопок */
-    margin-top: 15%; /* Отступ сверху */
+    width: 50%; /* Устанавливаем ширину для кнопок */
+    margin-top: 5vh; /* Отступ сверху */
     display: flex;
     flex-direction: column;
     gap: 15px; /* Расстояние между кнопками */
@@ -109,10 +109,10 @@ section > * {
 
 
 .navigation button {
-  padding: 10px 20px; /* Отступы внутри кнопки */
+  padding: 1vh 2vw; /* Отступы внутри кнопки */
   border: 2px solid #00ffef; /* Неоновая рамка */
-  border-radius: 5px; /* Скруглённые углы */
-  font-size: 1em; /* Размер текста */
+  border-radius: 0.5vh; /* Скруглённые углы */
+  font-size: 1.5vh; /* Размер текста */
   font-weight: bold; /* Жирный текст */
   cursor: pointer; /* Курсор в виде руки */
   background-color: transparent; /* Прозрачный фон */
@@ -130,11 +130,11 @@ section > * {
 /* Кнопки в правом нижнем углу */
 .right-corner {
     position: fixed; /* Закрепляем блок относительно окна браузера */
-    bottom: -20%; /* Отступ от нижнего края */
-    right: -220%; /* Отступ от правого края */
+    bottom: -15vh; /* Отступ от нижнего края */
+    right: -38vw; /* Отступ от правого края */
     display: flex; /* Гибкий контейнер для кнопок */
     flex-direction: column; /* Кнопки располагаются вертикально */
-    gap: 10px; /* Расстояние между кнопками */
+    gap: 1vh; /* Расстояние между кнопками */
     z-index: 9999; /* Поверх всех элементов */
 }
 
@@ -165,14 +165,14 @@ section > * {
 
 #ca-address {
     position: fixed;
-    bottom: -30%; /* Расположим текст на 5% выше от нижнего края */
-    left: -209%; /* Расстояние от левого края 10% */
-    padding: 10px 20px;
-    font-size: 1em;
+    bottom: -15vh; /* Расположим текст на 5% выше от нижнего края */
+    left: -35vw; /* Расстояние от левого края 10% */
+    padding: 1vh 2vw;
+    font-size: 1.5vh;
     font-weight: bold;
     color: #000;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
+    border-radius: 0.5vh;
     border: 2px solid #f4d03f;
     box-shadow: 0 0 15px rgba(244, 208, 63, 0.5);
     z-index: 9999;
@@ -386,8 +386,11 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-size: cover; /* Растягиваем фон, сохраняя пропорции */
-    background-position: center; /* Центрируем фон */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                url('images/chapter4secondoption.jpg') !important;;
 }
 
 .chapter4-title {
@@ -444,173 +447,60 @@ h1 {
     background-repeat: no-repeat; /* Избегаем повторений */
 }
 
-/* Для планшетов */
-@media (max-width: 1024px) {
-    .animated-section {
-        background-image: url('images/tablet-image.jpg'); /* Оптимизированное изображение для планшетов */
-    }
-}
-
-/* Для мобильных устройств */
-@media (max-width: 768px) {
-    .animated-section {
-        background-image: url('images/mobile-image.jpg'); /* Оптимизированное изображение для мобильных устройств */
-    }
-}
-
-/* Общий стиль для текста в главах */
-section p {
-    max-width: 100%; /* Текст занимает до 80% ширины страницы */
-    margin: 0 auto; /* Центрируем текст */
-    text-align: justify; /* Выравниваем текст по ширине */
-    line-height: 1.8; /* Улучшаем читаемость */
-    font-size: 1.2em; /* Размер текста */
-}
-
-@media (max-width: 1024px) {
+@media (min-height: 600px) and (max-height: 900px) {           /* для моего ноутбука */
     .navigation {
-        margin-top: 15%; /* Увеличиваем отступ для планшетов */
-        width: 30%; /* Делаем кнопки шире */
+        width: 60%;
+        margin-top: 15vh;
     }
 
-    .navigation button {
-        font-size: 0.9em; /* Уменьшаем шрифт кнопок */
-    }
-}
-
-@media (max-width: 768px) {
-    .navigation {
-        margin-top: 20%; /* Ещё больший отступ для маленьких экранов */
-        width: 40%; /* Ещё шире кнопки */
-    }
-
-    .navigation button {
-        font-size: 0.8em; /* Уменьшаем шрифт кнопок ещё больше */
-    }
-}
-
-@media (max-width: 1440px) {
     .right-corner {
-        bottom: -23%; /* Увеличиваем отступ для планшетов */
-        right: -145%;
+        bottom: -8vh;
+        right: -38vw;
     }
 
-    #ca-address {
-        bottom: -28%;
-        left: -135%; /* Сдвигаем текст ближе к центру */
-        font-size: 0.9em; /* Уменьшаем шрифт */
-    }
-}
-
-
-
-@media (max-width: 1024px) {
-    .right-corner {
-        bottom: -25%; /* Увеличиваем отступ для планшетов */
-        right: -80%;
-    }
-    .right-corner a {
-        font-size: 0.9em; /* Уменьшаем текст кнопок */
-        padding: 8px 16px; /* Уменьшаем размеры кнопок */
+    body {
+        font-size: 12px;
     }
     #ca-address {
-        bottom: -40%;
-        left: -80%; /* Сдвигаем текст ближе к центру */
-        font-size: 0.9em; /* Уменьшаем шрифт */
+    
+        bottom: -15vh; /* Расположим текст на 5% выше от нижнего края */
+        left: -38vw; /* Расстояние от левого края 10% */
     }
-}
-
-@media (max-width: 768px) {
-    .right-corner {
-        bottom: -30%; /* Ещё больший отступ */
-        right: -41%;
-    }
-    .right-corner a {
-        font-size: 0.8em; /* Ещё меньше текст */
-        padding: 8px 16px; /* Компактные кнопки */
-    }
-    #ca-address {
-        bottom: -40%;
-        left: -55%; /* Ещё ближе к центру */
-        font-size: 0.8em; /* Ещё меньше шрифт */
-    }
-}
-
-/* Для экранов шириной до 1440px */
-@media (max-width: 1440px) {
-    section p {
-        max-width: 85%; /* Текст занимает больше пространства */
-        font-size: 1.1em; /* Уменьшаем шрифт текста */
-    }
-
-    .navigation {
-        width: 35%; /* Увеличиваем ширину кнопок */
-        margin-top: 12%; /* Сокращаем отступ сверху */
-    }
-}
-
-/* Для экранов шириной до 1024px */
-@media (max-width: 1024px) {
-    section p {
-        max-width: 90%;
-        font-size: 1em;
-    }
-
-    .navigation {
-        width: 40%; /* Ещё меньшая ширина кнопок */
-        margin-top: 10%;
-    }
-}
-
-/* Для экранов шириной до 768px */
-@media (max-width: 768px) {
-    section p {
-        max-width: 95%;
-        font-size: 0.9em;
-    }
-
-    .navigation {
-        width: 50%; /* Расширяем кнопки для мобильных */
-        margin-top: 8%;
-        gap: 10px; /* Уменьшаем расстояние между кнопками */
-    }
-}
-
-
-@media (max-width: 1440px) {
     #chapter4 {
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                    url('images/chapter4-tablet.jpg');
-        background-size: cover;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                          url('images/chapter4secondoption720t1280.jpg');
+       background-size: contain;
         background-position: center;
     }
 }
 
 
-@media (max-width: 1024px) {
+@media (min-height: 1440px) and (max-height:2570 px) {
+    .navigation {
+        width: 80%;
+        margin-top: 15vh;
+    }
+
+    .right-corner {
+        bottom: -20vh;
+        right: -30vw;
+    }
+
+    body {
+        font-size: 12px;
+    }
+    #ca-address {
+    
+        bottom: -15vh; /* Расположим текст на 5% выше от нижнего края */
+        left: -28vw; /* Расстояние от левого края 10% */
+    }
     #chapter4 {
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                    url('images/chapter4secondoption1280.jpg');
-        background-size: cover;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                          url('images/chapter4secondoptionbig.jpg');
+       background-size: contain;
         background-position: center;
     }
 }
-
-/* Для мобильных устройств */
-@media (max-width: 768px) {
-    #chapter4 {
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                    url('images/chapter4-mobile.jpg');
-        background-size: cover;
-        background-position: center;
-    }
-}
-
-
-
-
-
-
 
 </style>
 
