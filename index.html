@@ -454,36 +454,8 @@ h1 {
     }
 
     .right-corner {
-        bottom: -8vh;
-        right: -38vw;
-    }
-
-    body {
-        font-size: 12px;
-    }
-    #ca-address {
-    
-        bottom: -15vh; /* Расположим текст на 5% выше от нижнего края */
-        left: -38vw; /* Расстояние от левого края 10% */
-    }
-    #chapter4 {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                          url('images/chapter4secondoption720t1280.jpg');
-       background-size: contain;
-        background-position: center;
-    }
-}
-
-
-@media (min-height: 1440px) and (max-height:2570 px) {
-    .navigation {
-        width: 80%;
-        margin-top: 15vh;
-    }
-
-    .right-corner {
-        bottom: -20vh;
-        right: -30vw;
+        bottom: -11vh;
+        right: -26vw;
     }
 
     body {
@@ -496,10 +468,85 @@ h1 {
     }
     #chapter4 {
         background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                          url('images/chapter4secondoptionbig.jpg');
+                          url('images/chapter4secondoption720t1280.jpg');
        background-size: contain;
         background-position: center;
     }
+}
+
+
+@media (min-height: 1440px) and (max-height:2570px) {
+    .navigation {
+        width: 100%;
+        margin-top: 15vh;
+    }
+
+    .right-corner {
+        bottom: -20vh;
+        right: -41vw;
+    }
+
+    .right-corner a {
+    width: 150px; /* Увеличенная ширина кнопки */
+    height: 50px; /* Увеличенная высота кнопки */
+    font-size: 2.2em; /* Увеличенный размер текста */
+    padding: 10px 20px; /* Можно отрегулировать отступы, если нужно */
+    }
+
+
+    body {
+        font-size: 12px;
+    }
+    #ca-address {
+    
+        bottom: -20vh; /* Расположим текст на 5% выше от нижнего края */
+        left: -38vw; /* Расстояние от левого края 10% */
+    }
+
+    .back-to-top {
+    width: 200px; /* Ширина кнопки */
+    height: 80px; /* Высота кнопки */
+    padding: 15px 25px; /* Увеличенные отступы */
+    border-radius: 10px; /* Более скруглённые углы */
+    }
+
+   .back-to-top .arrow {
+    font-size: 5em; /* Увеличенный размер стрелки */
+    }
+
+   .back-to-top .text {
+    font-size: 2em; /* Увеличенный текст "TO THE MOON" */
+    margin-top: 10px; /* Увеличенный отступ */
+    }
+
+   #chapter4 {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+        ), 
+        url('images/chapter4secondoptionbig.jpg'); /* Указываем версию для 4K */
+        background-size: cover !important; /* Растягиваем изображение на весь экран */
+        background-position: center !important; /* Центрируем */
+        background-repeat: no-repeat !important; /* Убираем повтор */
+    }
+    #chapter1 p, #chapter2 p, #chapter3 p, #chapter5 p {
+        font-size: 2.5em !important; /* Увеличенный размер текста */
+        line-height: 2.8 !important; /* Увеличенный межстрочный интервал */
+        max-width: 90% !important; /* Растягиваем текст до 90% ширины страницы */
+        margin: 150px auto 0 auto !important; /* Центрируем текст */
+        text-align: justify; /* Выравнивание текста по ширине */
+    }
+
+    /* Увеличение заголовков для всех глав */
+    #chapter1 h2, #chapter2 h2, #chapter3 h2, #chapter4 h2, #chapter5 h2 {
+        font-size: 3.5em; /* Увеличенный размер заголовков */
+        text-align: center; /* Центрируем заголовки */
+        max-width: 80%; /* Ограничиваем ширину заголовков */
+        margin: 0 auto; /* Центрируем заголовки */
+        margin: 100 auto 0px auto !important;
+    }
+
+
 }
 
 </style>
@@ -621,7 +668,7 @@ The tension grew as the shadows of the war machines crept closer to the borders 
 
 <script>
 // Таймер обратного отсчёта
-const startDate = new Date(Date.UTC(2025, 0, 22, 9, 0, 0)).getTime();
+const startDate = new Date(Date.UTC(2025, 0, 24, 10, 0, 0)).getTime();
 const targetDate = startDate + 24 * 60 * 60 * 1000;
 
 function updateCountdown() {
